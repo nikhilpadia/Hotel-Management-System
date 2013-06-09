@@ -1,0 +1,115 @@
+
+create database hotel;
+
+use hotel;
+
+
+create table login(user varchar(20) not null,
+password varchar(20) not null);
+
+insert into login values('techno','techno');
+
+
+create table addCust(Cid int(5) primary key,
+Cname char(20),Fname char(20),Gender char(10),
+DOB date,Address varchar(100),City char(20),
+State char(20),Country char(20),Phno int(20),
+Email varchar(20),Passport varchar(20));
+
+
+create table checkIn(Cid int(5),Cname char(20),
+Gender char(10),NoAdult int(2),NOchild int(2),
+Address varchar(100),Phno int(20),
+Email varchar(20),CinDate date,
+NoDays int(10),Rno int(10) primary key,RoomType char(10),
+Floor char(10),pricePerDay decimal(8,2),
+AdAmt decimal(8,2),
+foreign key(Cid) references addCust(Cid));
+
+
+
+create table checkOut(Cid int(5),Cname char(20),
+Gender char(10),Address varchar(100),Phno int(20),
+CinDate date,COutDate date,NoDays int(2),Rno int(10),
+RoomType varchar(10),
+Floor char(10),pricePerDay decimal(8,2),
+extraCharge decimal(8,2),RoomTariff decimal(8,2),
+TotalfoodAmt decimal(8,2),AdAmt decimal(8,2),
+BalAmt decimal(8,2),Total decimal(8,2),
+foreign key(Cid) references addCust(Cid),
+foreign key(Rno) references checkIn(Rno));
+
+
+
+ create table bill(Billid int(5) primary key, Cid int(5),
+ Cname char(20), CinDate date, COutDate date,
+ NoDays int(2), Rno int(10),
+ TotalfoodAmt decimal(8,2),
+  extraCharge decimal(8,2), Total decimal(8,2));
+
+
+
+
+create table Booking(TCid int(5) primary key,
+Cname char(20),Gender char(10),
+Address varchar(100),Phno int(20),passport varchar(20),
+Email varchar(20),DateOfArr date,BookeDate date,
+NoDays int(2));
+
+
+create table extraCharges(Cid int(5),Cname char(20),
+Specify char(20),Amount decimal(8,2));
+
+
+
+
+
+create table food(Fid varchar(20),
+Fname char(50),Quantity int(10),price decimal(8,2),
+Cid int(5),total decimal(8,2));
+
+
+create table Fbill(Bid varchar(10), 
+billdate date, 
+Cid int(5),
+Cname char(20),
+room int(5),
+grandtotal decimal(8,2));
+
+
+create view v2 as select Cid, Cname, Phno, Cindate, AdAmt from checkin;
+
+
+
+ create view v6 as select Cid, Cname,CinDate,COutDate,Rno,Total from checkout;
+
+
+
+ create view v7 as select Billid, Cid, Cname, CinDate, COutDate, NoDays, Rno, TotalfoodAmt, extraCharge, Total from bill;
+
+
+create or replace view v9 as select f.Fid, f.Fname, f.Quantity, f.price, f.Cid, f.total, fb.Bid, fb.billdate,fb.Cname,fb.grandtotal  from fbill fb, food f
+where fb.Cid=f.Cid;
+
+
+create or replace view v11 as select Fid,Fname,Quantity,price,total,Cid from food;
+
+
+
+insert into addCust values(30,'john','Sam','Male','1990-09-27','ram nagar','bang','karnataka','india',97408,'niku@gmail.com','asd123');
+
+insert into checkIn values(30,'john','Male',2,2,'ram nagar','97408','niku@gmail.com','2011-09-27',2,204,'AC','Second',1500,2000);
+
+insert into checkOut values(30,'john','Male','ram nagar','97408','2011-09-27','2011-09-30',3,204,'Ac','Second',1500,0,3000,500,2000,1500,1500);
+
+insert into addCust values(31,'Dilip','kumar','Male','1998-09-28','rajajinagar','bang','karnataka','india',23125142,'dilip@gmail.com','asd124');
+
+insert into checkIn values(31,'Dilip','Male',2,2,'rajajinagar','23125142','dilip@gmail.com','2011-09-28',2,300,'AC','Second',1500,2500);
+
+insert into checkOut values(31,'Dilip','Male','rajajinagar','23125140','2011-09-28','2011-10-05',7,300,'Ac','Second',1500,500,10500,400,2500,8900,8900);
+
+insert into addCust values(32,'Suresh','Mani','Male','1989-09-20','Peenya','bang','karnataka','india',23125500,'suresh@gmail.com','asd125');
+
+insert into checkIn values(32,'Suresh','Male',2,1,'Peenya','23125500','suresh@gmail.com','2011-09-29',2,305,'AC','third',1500,3000);
+
+insert into checkOut values(32,'Suresh','Male','Peenya','23125500','2011-09-29','2011-10-04',6,305,'Ac','third',1500,950,9000,1500,3000,8450,8450);

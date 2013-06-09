@@ -1,0 +1,41 @@
+
+
+  ********Important Notes before Starting with Hotel Management Software***************
+  
+  If you are Using Hotel Management Software i.e., folder to Install package then follow from Step 6 OR
+  Hotel Management(Techno.ink).Exe File then follow the Instruction as Below. 
+
+  1. Copy glxpbuttonz.OCX file.
+ 
+  2. paste the file to this location cd "C:\WINDOWS\system32"
+
+  3. GoTo START->Run->Type <cmd> then Press Enter.
+
+  4. Change the location Using this Command CD WINDOWS\system32
+
+  5. Now Copy this line and Paste to it: regsvr32 glxpbuttonz.ocx
+
+  6. Install Mysql(Setup) and mysql-connector-odbc-3.51.14-win32 which is in Mysql Database.
+
+  7. GoTo hotel Back-End file select all(ctrl+A).THEN Select ctrl + A (Copy)
+ 
+  8. GoTo Start->program files->MSQL->MYSQL Server 5.0->Mysql Command line Client
+ 
+  9. Type Password : mysql
+
+  10.Paste the Content earlier you copied at 7th point.
+
+  11.Exit the window.
+
+  12.Create Dsn as show in picture(slides attached with this project) and follow instruction
+
+  13.Done
+
+  You are now ready to use Hotel Management Software
+
+
+  User Name :techno
+  Password  :techno
+
+
+  ******************** THANK YOU *******************  
